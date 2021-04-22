@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('get artifact'){
             steps{
-                copyArtifacts(projectName: 'weightCI')
+                copyArtifacts(projectName: 'weightCI', filter: "latest.zip")
                 unzip zipFile: "latest.zip"
             }
         }
