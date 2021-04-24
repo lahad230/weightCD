@@ -7,6 +7,11 @@ pipeline {
                 unzip zipFile: "latest.zip"
             }
         }
+        stage('Build env') {
+            steps {
+                sh "bash buildEnv.sh -u ${okta_url} -i ${okta_id} -s ${okta_secret} -h ${db_fqnd} -p ${db_password} -n ${db_user}"
+            }
+        }
          stage('Build dependencies') { 
             steps {
                 sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
