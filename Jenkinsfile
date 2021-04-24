@@ -22,6 +22,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
+                sh "npm run initdb"
                 sh "sudo pm2 delete all || true"
                 sh "sudo pm2 start src/index.js"
                 sh "sudo pm2 save"
