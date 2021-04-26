@@ -27,8 +27,10 @@
     get_url:
       url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
+      username: smallpox
+      password: 8426Rl6248
 
-  - name: Extract foo.tgz into /var/lib/foo
+  - name: Extract artifact
     ansible.builtin.unarchive:
       src: /src/www/latest.zip
       dest: /src/www
