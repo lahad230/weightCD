@@ -1,9 +1,8 @@
 ---
 - hosts: staging
   become: yes
-  gather_facts: True
   tasks:
-  - debug: host_ip=hostvars[inventory_hostname]['ansible_enp0s3']['ipv4']['address']
+
   - name: update nodejs package 
     ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
@@ -52,7 +51,7 @@
         PORT=8080
         HOST=0.0.0.0
         NODE_ENV=development
-        HOST_URL=http://{{host_ip}}:8080
+        HOST_URL=http://{{ ip_response.content }}:8080
         COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
         OKTA_ORG_URL=https://{{ url }}
         OKTA_CLIENT_ID={{ id }}
