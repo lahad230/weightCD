@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'staging'}
+    agent {label 'CISlave'}
     stages {
         stage('get artifact'){
             steps{
