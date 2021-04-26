@@ -43,7 +43,8 @@
       remote_src: yes
 
   - name: create .env
-    ansible.builtin.script: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+    ansible.builtin.script: /src/www/buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+      remote_src: yes
 
   - name: initialize db
     ansible.builtin.shell: node /src/www/tools/initdb.js
