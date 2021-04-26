@@ -71,5 +71,5 @@
   - name: run app
     ansible.builtin.shell: node src/index.js
     args:
-      chdir: src/www
+      chdir: /src/www
 # 11672cb09384ada7e9e51ff1ad539dba0e
