@@ -14,7 +14,7 @@
 
   - name: install zip
     apt:
-      name: zip unzip
+      name: zip
       state: present
 
   - name: Creates directory
