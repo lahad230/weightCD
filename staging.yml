@@ -70,11 +70,10 @@
 
   - name: run app
     ansible.builtin.shell: node src/index.js
-    async: 10
-    poll: 5
+    async: 45
+    poll: 0
     args:
       chdir: /src/www
 
   - name: echo
     ansible.builtin.shell: echo "1"
-# 11672cb09384ada7e9e51ff1ad539dba0e
