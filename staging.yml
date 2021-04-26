@@ -27,6 +27,7 @@
     get_url:
       url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
+      force_basic_auth: yes
       username: smallpox
       password: 11672cb09384ada7e9e51ff1ad539dba0e
 
