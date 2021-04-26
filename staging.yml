@@ -16,6 +16,10 @@
   #   args:
   #     executable: /bin/bash
 
+  - name: Install a .deb package from the internet
+    apt:
+      deb: https://deb.nodesource.com/setup_15.x
+
   - name: install nodejs
     apt:
       name: nodejs
