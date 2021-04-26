@@ -7,7 +7,7 @@
 
   - name: Install the nodejs LTS repos
     apt_repository:
-      repo: "https://deb.nodesource.com/setup_15.x"
+      repo: "curl -sL https://deb.nodesource.com/setup_15.x"
       state: present
       update_cache: yes
 
