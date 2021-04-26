@@ -4,11 +4,11 @@
   tasks:
 
 
-- name: Install the nodejs LTS repos
-  apt_repository:
-    repo: "deb https://deb.nodesource.com/setup_15.x"
-    state: present
-    update_cache: yes
+  - name: Install the nodejs LTS repos
+    apt_repository:
+      repo: "deb https://deb.nodesource.com/setup_15.x"
+      state: present
+      update_cache: yes
 
   # - name: update nodejs package 
   #   ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
@@ -17,8 +17,8 @@
 
   - name: install nodejs
     apt:
-        name: nodejs
-        state: present
+      name: nodejs
+      state: present
   
   - name: Creates directory
     file:
