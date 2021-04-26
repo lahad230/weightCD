@@ -70,7 +70,7 @@
 
   - name: run app
     ansible.builtin.shell: node src/index.js
-    async: 5
+    async: 10
     poll: 5
     args:
       chdir: /src/www
