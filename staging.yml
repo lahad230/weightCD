@@ -23,9 +23,9 @@
   #     dest: /src/www
   #     remote_src: yes    
 
-  - name: Download foo.conf
+  - name: Download artifact
     get_url:
-      url: http://example.com/path/file.conf
+      url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
 
   - name: Extract foo.tgz into /var/lib/foo
