@@ -4,21 +4,8 @@
   become: yes
   tasks:
 
-
-  # - name: Install the nodejs LTS repos
-  #   apt_repository:
-  #     repo: "deb https://deb.nodesource.com/setup_15.x"
-  #     state: present
-  #     update_cache: yes
-
-  # - name: update nodejs package 
-  #   ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-  #   args:
-  #     executable: /bin/bash
-
-  # - name: Install a .deb package from the internet
-  #   apt:
-  #     deb: https://deb.nodesource.com/setup_15.x
+  - name: update nodejs package 
+    ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
   - name: install nodejs
     apt:
@@ -30,19 +17,27 @@
       path: /src/www
       state: directory
 
-  - name: getting artifact
-    ansible.builtin.unarchive:
-      src: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
-      dest: /src/www
-      remote_src: yes         
+  # - name: getting artifact
+  #   ansible.builtin.unarchive:
+  #     src: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
+  #     dest: /src/www
+  #     remote_src: yes    
 
-  # - name: create .env
-  #   command: bash buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
+  - name: Download foo.conf
+    get_url:
+      url: http://example.com/path/file.conf
+      dest: /src/www
+
+  - name: Extract foo.tgz into /var/lib/foo
+    ansible.builtin.unarchive:
+      src: /src/www/latest.zip
+      dest: /src/www
+
   - name: create .env
-    ansible.builtin.script: bash buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
+    ansible.builtin.script: buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
 
   - name: initialize db
-    command: node /src/www/tools/initdb.js
+    ansible.builtin.shell: node /src/www/tools/initdb.js
 
   - name: run app
-    command: node /src/www/src/index.js
+    ansible.builtin.shell: node /src/www/src/index.js
