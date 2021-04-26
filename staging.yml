@@ -37,12 +37,14 @@
       remote_src: yes
   
   - name: Find my public ip
-      uri: 
-        url: http://ifconfig.me/ip
-        return_content: yes
-      register: ip_response
+    uri: 
+      url: http://ifconfig.me/ip
+      return_content: yes
+    register: ip_response
+
   # - name: create .env
   #   ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+
   - name: Creating a .env file
     copy:
       dest: "/src/www/.env"
