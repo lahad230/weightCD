@@ -42,7 +42,7 @@
   #   register: ip_response
 
   - name: create .env
-    ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+    ansible.builtin.script: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
 
   # - name: Creating a .env file
   #   copy:
