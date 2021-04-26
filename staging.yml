@@ -16,9 +16,11 @@
   #   args:
   #     executable: /bin/bash
 
-  - name: Install a .deb package from the internet
-    apt:
-      deb: https://deb.nodesource.com/setup_15.x
+  # - name: Install a .deb package from the internet
+  #   apt:
+  #     deb: https://deb.nodesource.com/setup_15.x
+  - name: Update apt-get repo and cache
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
   - name: install nodejs
     apt:
