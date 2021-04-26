@@ -3,7 +3,9 @@ pipeline {
     stages{
         stage('run playbook'){
             steps{
-                sh "ansible-playbook playbooks/staging.yml"
+                dir("${env.WORKSPACE}/weightCI"){
+                    sh "ansible-playbook playbooks/staging.yml"
+                }
             }
         }
     }
