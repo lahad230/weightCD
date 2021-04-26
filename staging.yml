@@ -1,7 +1,7 @@
 ---
-
 - hosts: staging
   become: yes
+  host_ip: "{{ ansible_enp0s3.ipv4.address }}"
   tasks:
 
   - name: update nodejs package 
@@ -22,12 +22,6 @@
       path: /src/www
       state: directory
 
-  # - name: getting artifact
-  #   ansible.builtin.unarchive:
-  #     src: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
-  #     dest: /src/www
-  #     remote_src: yes    
-
   - name: Download artifact
     get_url:
       url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
@@ -41,9 +35,31 @@
       src: /src/www/latest.zip
       dest: /src/www
       remote_src: yes
-
-  - name: create .env
-    ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }} >> .env
+  
+  - name: Find my public ip
+      uri: 
+        url: http://ifconfig.me/ip
+        return_content: yes
+      register: ip_response
+  # - name: create .env
+  #   ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+  - name: Creating a .env file
+    copy:
+      dest: "/src/www/.env"
+      content: |
+        PORT=8080
+        HOST=0.0.0.0
+        NODE_ENV=development
+        HOST_URL=http://{{host_ip}}:8080
+        COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
+        OKTA_ORG_URL=https://{{ url }}
+        OKTA_CLIENT_ID={{ id }}
+        OKTA_CLIENT_SECRET={{ secret }}
+        PGHOST={{ db_host }}
+        PGUSERNAME={{ user }}
+        PGDATABASE=postgres
+        PGPASSWORD={{ pass }}
+        PGPORT=5432
 
   - name: initialize db
     ansible.builtin.shell: node /src/www/tools/initdb.js
