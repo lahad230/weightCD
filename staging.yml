@@ -72,4 +72,7 @@
     ansible.builtin.shell: node src/index.js
     args:
       chdir: /src/www
+
+  - name: echo
+    ansible.builtin.shell: echo 1
 # 11672cb09384ada7e9e51ff1ad539dba0e
