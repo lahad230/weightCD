@@ -69,10 +69,8 @@
     ansible.builtin.shell: cd /src/www
 
   - name: run app
-    ansible.builtin.shell: node src/index.js
+    ansible.builtin.shell: npm run dev
     args:
       chdir: /src/www
 
-  - name: echo
-    ansible.builtin.shell: echo 1
 # 11672cb09384ada7e9e51ff1ad539dba0e
