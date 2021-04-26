@@ -32,7 +32,7 @@
 
   - name: getting artifact
     ansible.builtin.unarchive:
-      src: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
+      src: http://20.79.65.196:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
       remote_src: yes         
 
