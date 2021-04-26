@@ -3,13 +3,13 @@
 - hosts: staging
   tasks:
 
-  # - name: update nodejs package 
-  #   command: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-
   - name: update nodejs package 
-    ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-    args:
-      executable: /bin/bash
+    command: sh curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+
+  # - name: update nodejs package 
+  #   ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+  #   args:
+  #     executable: /bin/bash
 
   - name: install nodejs
     apt:
