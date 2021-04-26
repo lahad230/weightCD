@@ -43,7 +43,7 @@
       remote_src: yes
 
   - name: create .env
-    ansible.builtin.script: buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
+    ansible.builtin.script: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
 
   - name: initialize db
     ansible.builtin.shell: node /src/www/tools/initdb.js

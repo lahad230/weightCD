@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('run prod playbook'){
             steps{
-                sh "ansible-playbook staging.yml"            
+                sh 'ansible-playbook staging.yml --extra-vars "url=${okta_url} id=${okta_id} secret=${okta_secret} db_host=${db_fqnd} pass=${db_password} user=${db_user}"'            
             }
         }
     }
