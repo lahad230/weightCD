@@ -66,6 +66,6 @@
     ansible.builtin.shell: node /src/www/tools/initdb.js
 
   - name: run app
-    ansible.builtin.shell: node /src/www/src/index.js
+    ansible.builtin.shell: cd /src/www | node src/index.js
 
 # 11672cb09384ada7e9e51ff1ad539dba0e
