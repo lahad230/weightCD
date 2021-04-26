@@ -31,8 +31,8 @@
       url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
       force_basic_auth: yes
-      username: {{ username }}
-      password: {{ api_key }}
+      username: "{{ username }}""
+      password: "{{ api_key }}""
 
   - name: Extract artifact
     ansible.builtin.unarchive:
@@ -45,9 +45,6 @@
       url: http://ifconfig.me/ip
       return_content: yes
     register: ip_response
-
-  # - name: create .env
-  #   ansible.builtin.command: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
 
   - name: Creating a .env file
     copy:
