@@ -32,13 +32,13 @@
 
   - name: getting artifact
     ansible.builtin.unarchive:
-      src: http://20.79.65.196:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
+      src: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
       remote_src: yes         
 
-  # - name: creat .env
+  # - name: create .env
   #   command: bash buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
-  - name: Run a script with arguments (free form)
+  - name: create .env
     ansible.builtin.script: bash buildEnv.sh -u {{ hostvars['staging'].okta_url }} -i {{ hostvars['staging'].okta_id }} -s {{ hostvars['staging'].okta_secret }} -h {{ hostvars['staging'].db_host }} -p {{ hostvars['staging'].db_pass }} -n {{ hostvars['staging'].db_user }}
 
   - name: initialize db
