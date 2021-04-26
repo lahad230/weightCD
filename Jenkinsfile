@@ -1,9 +1,9 @@
 pipeline {
-    agent {label 'master'}
+    agent {label 'CISlave'}
     stages{
         stage('run playbook'){
             steps{
-                dir("${env.WORKSPACE}/weightCI"){
+                dir("../weightCI"){
                     sh "ansible-playbook playbooks/staging.yml"
                 }
             }
