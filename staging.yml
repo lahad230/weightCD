@@ -35,32 +35,32 @@
       dest: /src/www
       remote_src: yes
   
-  - name: Find my public ip
-    uri: 
-      url: http://ifconfig.me/ip
-      return_content: yes
-    register: ip_response
+  # - name: Find my public ip
+  #   uri: 
+  #     url: http://ifconfig.me/ip
+  #     return_content: yes
+  #   register: ip_response
 
-  # - name: create .env
-  #   ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
+  - name: create .env
+    ansible.builtin.shell: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
 
-  - name: Creating a .env file
-    copy:
-      dest: "/src/www/.env"
-      content: |
-        PORT=8080
-        HOST=0.0.0.0
-        NODE_ENV=development
-        HOST_URL=http://{{ ip_response.content }}:8080
-        COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
-        OKTA_ORG_URL=https://{{ url }}
-        OKTA_CLIENT_ID={{ id }}
-        OKTA_CLIENT_SECRET={{ secret }}
-        PGHOST={{ db_host }}
-        PGUSERNAME={{ user }}
-        PGDATABASE=postgres
-        PGPASSWORD={{ pass }}
-        PGPORT=5432
+  # - name: Creating a .env file
+  #   copy:
+  #     dest: "/src/www/.env"
+  #     content: |
+  #       PORT=8080
+  #       HOST=0.0.0.0
+  #       NODE_ENV=development
+  #       HOST_URL=http://{{ ip_response.content }}:8080
+  #       COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
+  #       OKTA_ORG_URL=https://{{ url }}
+  #       OKTA_CLIENT_ID={{ id }}
+  #       OKTA_CLIENT_SECRET={{ secret }}
+  #       PGHOST={{ db_host }}
+  #       PGUSERNAME={{ user }}
+  #       PGDATABASE=postgres
+  #       PGPASSWORD={{ pass }}
+  #       PGPORT=5432
 
   - name: initialize db
     ansible.builtin.shell: node /src/www/tools/initdb.js
