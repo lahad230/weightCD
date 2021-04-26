@@ -26,8 +26,8 @@
       url: http://10.0.0.4:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
       dest: /src/www
       force_basic_auth: yes
-      username: smallpox
-      password: 11672cb09384ada7e9e51ff1ad539dba0e
+      username: {{ username }}
+      password: {{ api_key }}
 
   - name: Extract artifact
     ansible.builtin.unarchive:
@@ -64,9 +64,6 @@
 
   - name: initialize db
     ansible.builtin.shell: node /src/www/tools/initdb.js
-
-  - name: cd to app
-    ansible.builtin.shell: cd /src/www
 
   - name: run app
     ansible.builtin.shell: node src/index.js
