@@ -41,9 +41,6 @@
       return_content: yes
     register: ip_response
 
-  # - name: create .env
-  #   ansible.builtin.command: buildEnv.sh -u {{ url }} -i {{ id }} -s {{ secret }} -h {{ db_host }} -p {{ pass }} -n {{ user }}
-
   - name: Creating a .env file
     copy:
       dest: "/src/www/.env"
