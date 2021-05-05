@@ -84,7 +84,7 @@
     ignore_errors: yes
 
   - name: Run new app image
-    ansible.builtin.shell: docker run smallpox230/weight:{{ build_response.content }} -p 8080:8080 --env-file /src/www/.env
+    ansible.builtin.shell: docker run -d -p 8080:8080 --env-file /src/www/.env smallpox230/weight:{{ build_response.content }}  
   # - name: update nodejs package 
   #   ansible.builtin.shell: curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
