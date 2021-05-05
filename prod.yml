@@ -51,6 +51,9 @@
     uri: 
       url: http://10.0.0.5:8080/job/weightCI/lastSuccessfulBuild/buildNumber
       return_content: yes
+      force_basic_auth: yes
+      username: "{{ username }}"
+      password: "{{ api_key }}"
     register: build_response
 
   - name: Creates directory
@@ -108,9 +111,9 @@
   #   get_url:
   #     url: http://10.0.0.5:8080/job/weightCI/lastSuccessfulBuild/artifact/latest.zip
   #     dest: /src/www
-  #     force_basic_auth: yes
-  #     username: "{{ username }}"
-  #     password: "{{ api_key }}"
+      # force_basic_auth: yes
+      # username: "{{ username }}"
+      # password: "{{ api_key }}"
 
   # - name: Extract artifact
   #   ansible.builtin.unarchive:
