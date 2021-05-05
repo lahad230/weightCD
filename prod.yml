@@ -81,6 +81,7 @@
 
   - name: Kill docker containers
     ansible.builtin.shell: docker kill $(docker ps -q)
+    ignore_errors: yes
 
   - name: Run new app image
     ansible.builtin.shell: docker run smallpox230/weight:{{ build_response.content }} -p 8080:8080 --env-file /src/www/.env
