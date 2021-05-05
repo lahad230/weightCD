@@ -84,4 +84,4 @@
     ignore_errors: yes
 
   - name: Run new app image
-    ansible.builtin.shell: docker run -p 8080:8080 -d --env-file /src/www/.env smallpox230/weight:{{ build_response.content }}  
+    ansible.builtin.shell: docker run -p 8080:8080 -d --restart always --env-file /src/www/.env smallpox230/weight:{{ build_response.content }}  
