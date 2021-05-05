@@ -52,7 +52,7 @@
       url: http://10.0.0.5:8080/job/weightCI/lastSuccessfulBuild/buildNumber
       return_content: yes
       force_basic_auth: yes
-      username: "{{ username }}"
+      user: "{{ username }}"
       password: "{{ api_key }}"
     register: build_response
 
