@@ -1,0 +1,15 @@
+[staging]
+10.0.0.6
+10.0.0.4
+
+[prod]
+11.0.0.5
+11.0.0.4
+
+[staging:vars]
+ansible_user=lahad230
+ansible_password=8426Rl6248
+
+[prod:vars]
+ansible_user=lahad230
+ansible_password=8426Rl6248
