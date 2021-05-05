@@ -8,12 +8,12 @@
       name: "{{item}}"
       state: present
       update_cache: yes
-      loop:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - gnupg-agent
-        - software-properties-common
+    loop:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
 
   - name: gpg key
     apt_key:
@@ -30,10 +30,10 @@
       name: "{{item}}"
       state: latest
       update_cache: yes
-      loop:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
+    loop:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
 
   - name: run docker as service
     service:
